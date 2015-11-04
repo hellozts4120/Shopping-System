@@ -22,28 +22,54 @@
 <?php
 	if($_GET['action'] == 'ask'){
 		$ProductID = $_POST[ProductID];
+		$UserID = $_POST[UserID];
 	}
 	$con = mysql_connect("localhost","root","zts1996412");
 	if(!$con){
 		die("Fail to connect to the database:".mysql_error());
 	}
 	mysql_select_db("portal",$con);
-	$request = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
-	if(!$request){
-		echo "抱歉，未查询到指定编号商品！";
-	}
-	else{
-		$DataOut = mysql_fetch_array($request);
-		if(!$DataOut){
+	if(isset($_POST[ProductID]) && !empty($_POST[ProductID]) && empty($_POST[UserID])){
+		$request = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
+		if(!$request){
 			echo "抱歉，未查询到指定编号商品！";
 		}
 		else{
-			echo "指定编号商品信息为：";
-			echo "<br />";
-			echo $DataOut['ProductID']."".$DataOut['ProductName']."".$DataOut['Price'];
+			$DataOut = mysql_fetch_array($request);
+			if(!$DataOut){
+				echo "抱歉，未查询到指定编号商品！";
+			}
+			else{
+				echo "指定编号商品信息为：";
+				echo "<br />";
+				echo $DataOut['ProductID']." ".$DataOut['ProductName']." ".$DataOut['Price'];
+			}
 		}
 	}
-	
+	else if(isset($_POST[UserID]) && !empty($_POST[UserID]) && empty($_POST[ProductID])){
+		$request = mysql_query("SELECT * FROM PostOut WHERE UserID = '$UserID'");
+		if(!$request){
+			echo "抱歉，未查询到指定卖家！";
+		}
+		else{
+			if(!mysql_fetch_array($request)){
+				echo "抱歉，未查询到指定卖家！";
+			}
+			else{
+				echo "指定卖家的所有商品信息为：";
+				echo "<br />";
+				while($DataOut = mysql_fetch_array($request)){
+					$quest = mysql_query("SELECT * FROM Product WHERE ProductID = '$DataOut[ProductID]'");
+					$DataOutReal = mysql_fetch_array($quest);
+					echo $DataOutReal['ProductID']." ".$DataOutReal['ProductName']." ".$DataOutReal['Price'];
+					echo "<br />";
+				}
+			}
+		}
+	}
+	else{
+		echo "输入有误！请重新输入！";
+	}
 	mysql_close($con);
 ?>
 
