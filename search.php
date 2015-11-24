@@ -5,6 +5,7 @@
 
 <html>
 <head>
+<body bgcolor = "red">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <h1>查询商品信息</h1>
 </head>
@@ -29,7 +30,7 @@
 		die("Fail to connect to the database:".mysql_error());
 	}
 	mysql_select_db("portal",$con);
-	if(isset($_POST[ProductID]) && !empty($_POST[ProductID]) && empty($_POST[UserID])){
+	if((!empty($_POST[ProductID])) && empty($_POST[UserID])){
 		$request = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
 		if(!$request){
 			echo "抱歉，未查询到指定编号商品！";
@@ -46,24 +47,24 @@
 			}
 		}
 	}
-	else if(isset($_POST[UserID]) && !empty($_POST[UserID]) && empty($_POST[ProductID])){
+	else if((!empty($_POST[UserID])) && empty($_POST[ProductID])){
 		$request = mysql_query("SELECT * FROM PostOut WHERE UserID = '$UserID'");
 		if(!$request){
 			echo "抱歉，未查询到指定卖家！";
 		}
 		else{
-			if(!mysql_fetch_array($request)){
-				echo "抱歉，未查询到指定卖家！";
-			}
-			else{
-				echo "指定卖家的所有商品信息为：";
+			$isout = false;
+			echo "指定卖家的所有商品信息为：";
+			echo "<br />";
+			while($DataOut = mysql_fetch_array($request)){
+				$quest = mysql_query("SELECT * FROM Product WHERE ProductID = '$DataOut[ProductID]'");
+				$DataOutReal = mysql_fetch_array($quest);
+				echo $DataOutReal['ProductID']." ".$DataOutReal['ProductName']." ".$DataOutReal['Price'];
 				echo "<br />";
-				while($DataOut = mysql_fetch_array($request)){
-					$quest = mysql_query("SELECT * FROM Product WHERE ProductID = '$DataOut[ProductID]'");
-					$DataOutReal = mysql_fetch_array($quest);
-					echo $DataOutReal['ProductID']." ".$DataOutReal['ProductName']." ".$DataOutReal['Price'];
-					echo "<br />";
-				}
+				$isout = true;
+			}
+			if(!$isout){
+				echo "抱歉，未查询到指定卖家发布的信息！";
 			}
 		}
 	}

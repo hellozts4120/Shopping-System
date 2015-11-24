@@ -23,7 +23,7 @@
 		}
 		else{
 			$request = mysql_query("INSERT INTO Product(ProductID,ProductName,Price) VALUES ('$ProductID','$ProductName','$Price')");
-			$request1 = mysql_query("INSERT INTO PostOut(UserID,ProductID,GRADE) VALUES ('$_SESSION[UserID]','$ProductID','$Price')");
+			$request1 = mysql_query("INSERT INTO PostOut(UserID,ProductID) VALUES ('$_SESSION[UserID]','$ProductID')");
 			echo $_SESSION[UserID].",您的商品已经上传完成！";
 			echo "即将自动返回至上传界面！";
 			header("Refresh:3;url = postout.php");

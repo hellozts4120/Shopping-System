@@ -1,35 +1,15 @@
 <?php
 	session_start();
 	error_reporting(0);
-	
 ?>
 
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>我的商品信息</h1>
+<h1>删除我的订单</h1>
 </head>
 <body>
 <br/>
-
-<p1>我的用户名：</p1>
-	<?php	echo $_SESSION[UserID]
-	?>
-	<br/>
-<p2>我的性别：</p2>
-	<?php	
-		if($_SESSION[SEX] = 'M'){
-			echo "男";
-		}
-		else{
-			echo "女";
-		};
-	?>
-	<br/>
-<p3>我的年龄：</p3>
-	<?php	echo $_SESSION[AGE];
-	?>
-	<br/>
 
 <?php
 	$con = mysql_connect("localhost","root","zts1996412");
@@ -50,12 +30,18 @@
 		}
 	}
 	else{
-		echo "您还没有发布商品，快去添加商品吧！";
+		echo "您还没有发布商品，不需要删除订单哦！";
 	}
 	mysql_close($con);
 ?>
-	<br/>
-<br/>	
+
+<form action = "isdelete.php" method = "post">
+	<p1>输入删除的物品编号：</p1> <input name = "ProductID" type = "text">
+	<input type = "submit" value = "删除它！">
+		<br />
+	<br />
+</form>
+
 <a href = "main.php">返回主界面</a><br/>
 </body>
 </html>
