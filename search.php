@@ -43,12 +43,15 @@
 			else{
 				echo "指定编号商品信息为：";
 				echo "<br />";
-				echo $DataOut['ProductID']." ".$DataOut['ProductName']." ".$DataOut['Price'];
+				echo "商品编号：".$DataOut['ProductID']." ";
+				echo "商品名称：".$DataOut['ProductName']." ";
+				echo "商品价格：".$DataOut['Price']." ";
+				echo "所有人：".$DataOut['OwnerID'];
 			}
 		}
 	}
 	else if((!empty($_POST[UserID])) && empty($_POST[ProductID])){
-		$request = mysql_query("SELECT * FROM PostOut WHERE UserID = '$UserID'");
+		$request = mysql_query("SELECT * FROM Product WHERE OwnerID = '$UserID'");
 		if(!$request){
 			echo "抱歉，未查询到指定卖家！";
 		}
@@ -59,7 +62,9 @@
 			while($DataOut = mysql_fetch_array($request)){
 				$quest = mysql_query("SELECT * FROM Product WHERE ProductID = '$DataOut[ProductID]'");
 				$DataOutReal = mysql_fetch_array($quest);
-				echo $DataOutReal['ProductID']." ".$DataOutReal['ProductName']." ".$DataOutReal['Price'];
+				echo "商品编号：".$DataOutReal['ProductID']." ";
+				echo "商品名称：".$DataOutReal['ProductName']." ";
+				echo "商品价格：".$DataOutReal['Price']." ";
 				echo "<br />";
 				$isout = true;
 			}

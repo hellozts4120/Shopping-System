@@ -46,6 +46,7 @@
 			}
 			else{
 				$request1 = mysql_query("INSERT INTO Users(UserID,Passwords,SEX,AGE) VALUES ('$UserID','$Passwords','$SEX','$AGE')");
+				$request2 = mysql_query("INSERT INTO Account(UserID,Money) VALUES ('$UserID',0)");
 				echo $UserID.",您已注册成功，马上跳转至登录页面啦~";
 				header("Refresh:3;url = index.php");
 			}

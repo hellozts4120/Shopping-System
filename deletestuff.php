@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>删除我的订单</h1>
+<h1>删除已发布商品</h1>
 </head>
 <body>
 <br/>
@@ -17,7 +17,7 @@
 		die("Fail to connect to the database:".mysql_error());
 	}
 	mysql_select_db("portal",$con);
-	$request = mysql_query("SELECT * FROM PostOut WHERE UserID = '$_SESSION[UserID]'");
+	$request = mysql_query("SELECT * FROM Product WHERE OwnerID = '$_SESSION[UserID]'");
 	if($request){
 		echo "您已发布的商品有：";
 		echo "<br />";
@@ -36,7 +36,7 @@
 ?>
 
 <form action = "isdelete.php" method = "post">
-	<p1>输入删除的物品编号：</p1> <input name = "ProductID" type = "text">
+	<p1>输入想要删除的物品编号：</p1> <input name = "ProductID" type = "text">
 	<input type = "submit" value = "删除它！">
 		<br />
 	<br />

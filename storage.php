@@ -37,7 +37,7 @@
 		die("Fail to connect to the database:".mysql_error());
 	}
 	mysql_select_db("portal",$con);
-	$request = mysql_query("SELECT * FROM PostOut WHERE UserID = '$_SESSION[UserID]'");
+	$request = mysql_query("SELECT * FROM Product WHERE OwnerID = '$_SESSION[UserID]'");
 	if($request){
 		echo "您已发布的商品有：";
 		echo "<br />";

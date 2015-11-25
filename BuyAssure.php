@@ -15,12 +15,12 @@
 	}
 	mysql_select_db("portal",$con);
 	$ProductID = $_POST[ProductID];
-	$result = mysql_query("SELECT * FROM PostOut WHERE ProductID = '$ProductID'");
+	$result = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
 	
 	if($row = mysql_fetch_array($result)){
 		$search1 = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
 		$DataOut = mysql_fetch_array($search1);
-		$SellerID = $row[UserID];
+		$SellerID = $row[OwnerID];
 		if($SellerID == $_SESSION[UserID]){
 			echo "不能购买自己的商品！2秒后返回上层！";
 			header("Refresh:2;url = buy.php");
@@ -31,9 +31,12 @@
 			echo "购买者：".$_SESSION[UserID]."<br/>";
 			echo "商品编号：".$ProductID."<br/>";
 			echo "商品名称：".$DataOut['ProductName']."<br/>";
+			echo "商品价格：".$DataOut['Price']."<br/>";
 			echo "<br/>";
 			echo "商品已归于您名下！"."<br/>";
-			mysql_query("UPDATE PostOut SET UserID = '$_SESSION[UserID]' WHERE ProductID = '$ProductID'");
+			mysql_query("UPDATE Account SET Money = Money - $DataOut[Price] WHERE UserID = '$_SESSION[UserID]'");
+			mysql_query("UPDATE Account SET Money = Money + $DataOut[Price] WHERE UserID = '$SellerID'");
+			mysql_query("UPDATE Product SET OwnerID = '$_SESSION[UserID]' WHERE ProductID = '$ProductID'");
 		}
 	}
 	else{
