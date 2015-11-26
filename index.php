@@ -17,5 +17,11 @@
 	<br/>
 <br/>
 <p1>没有账号？<p1/><a href="signin.php">点击这里注册！</a><br/>
+
+	<br/>
+<br/>
+	<br/>
+<br/>
+<a href="AdminSign.php">管理员登录</a>
 <body/>
 <html/>

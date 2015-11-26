@@ -18,19 +18,24 @@
 	<br />
 	<p2>卖家姓名查询：</p2> <input name = "UserID" type = "text">
 	<input type = "submit" value = "姓名查询">
+		<br />
+	<br />
+	<p2>商品模糊查询：</p2> <input name = "ProName" type = "text">
+	<input type = "submit" value = "模糊查询">
 </form>
 
 <?php
 	if($_GET['action'] == 'ask'){
 		$ProductID = $_POST[ProductID];
 		$UserID = $_POST[UserID];
+		$ProName = $_POST[ProName];
 	}
 	$con = mysql_connect("localhost","root","zts1996412");
 	if(!$con){
 		die("Fail to connect to the database:".mysql_error());
 	}
 	mysql_select_db("portal",$con);
-	if((!empty($_POST[ProductID])) && empty($_POST[UserID])){
+	if((!empty($_POST[ProductID])) && empty($_POST[UserID]) && empty($_POST[ProName])){
 		$request = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
 		if(!$request){
 			echo "抱歉，未查询到指定编号商品！";
@@ -50,7 +55,7 @@
 			}
 		}
 	}
-	else if((!empty($_POST[UserID])) && empty($_POST[ProductID])){
+	else if((!empty($_POST[UserID])) && empty($_POST[ProductID]) && empty($_POST[ProName])){
 		$request = mysql_query("SELECT * FROM Product WHERE OwnerID = '$UserID'");
 		if(!$request){
 			echo "抱歉，未查询到指定卖家！";
@@ -70,6 +75,21 @@
 			}
 			if(!$isout){
 				echo "抱歉，未查询到指定卖家发布的信息！";
+			}
+		}
+	}
+	else if((!empty($_POST[ProName])) && empty($_POST[ProductID]) && empty($_POST[UserID])){
+		$request4 = mysql_query("SELECT * FROM Product WHERE ProductName LIKE '%$ProName%'");
+		if(!$request1 && !$request2 && !$request3 && !$request4){
+			echo "抱歉，未查询到指定信息的商品！";
+		}
+		else{
+			while($DataOutReal = mysql_fetch_array($request4)){
+				echo "商品编号：".$DataOutReal['ProductID']." ";
+				echo "商品名称：".$DataOutReal['ProductName']." ";
+				echo "商品价格：".$DataOutReal['Price']." ";
+				echo "所有人：".$DataOutReal['OwnerID'];
+				echo "<br />";
 			}
 		}
 	}

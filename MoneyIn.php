@@ -25,8 +25,8 @@
 		$NewMoney = $data[Money] + $curMoney;
 		echo "充值成功！本次共充值 "."$curMoney"." 元，当前账户余额 ".$NewMoney." 元。"."<br/>";
 		echo "<br/>";
+		mysql_query("UPDATE Account SET Money = Money + $curMoney WHERE UserID = '$_SESSION[UserID]'");
 	}
-	mysql_query("UPDATE Account SET Money = Money + $curMoney WHERE UserID = '$_SESSION[UserID]'");
 	header("Refresh:3;url = account.php");
 	mysql_close($con);
 ?>

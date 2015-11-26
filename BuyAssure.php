@@ -19,10 +19,16 @@
 	
 	if($row = mysql_fetch_array($result)){
 		$search1 = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
+		$search2 = mysql_query("SELECT * FROM Account WHERE UserID = '$_SESSION[UserID]'");
+		$YourMoney = mysql_query($search2);
 		$DataOut = mysql_fetch_array($search1);
 		$SellerID = $row[OwnerID];
 		if($SellerID == $_SESSION[UserID]){
 			echo "不能购买自己的商品！2秒后返回上层！";
+			header("Refresh:2;url = buy.php");
+		}
+		else if($DataOut['Price'] > $YourMoney[Money]){
+			echo "您的余额不足！2秒后返回上层";
 			header("Refresh:2;url = buy.php");
 		}
 		else{

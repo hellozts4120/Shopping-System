@@ -35,7 +35,7 @@
 		die("Fail to connect to the database:".mysql_error());
 	}
 	mysql_select_db("portal",$con);
-	if(!empty($_POST[UserID]) && !empty($_POST[Passwords]) && !empty($_POST[RePasswords])){
+	if(!empty($_POST[UserID]) && !empty($_POST[Passwords]) && !empty($_POST[RePasswords]) && !empty($_POST[SEX]) && !empty($_POST[AGE])){
 		$request = mysql_query("SELECT * FROM Users WHERE UserID = '$UserID'");
 		if($request){
 			if(mysql_fetch_array($request)){
@@ -46,7 +46,8 @@
 			}
 			else{
 				$request1 = mysql_query("INSERT INTO Users(UserID,Passwords,SEX,AGE) VALUES ('$UserID','$Passwords','$SEX','$AGE')");
-				$request2 = mysql_query("INSERT INTO Account(UserID,Money) VALUES ('$UserID',0)");
+				$request2 = mysql_query("INSERT INTO Account(UserID,Money) VALUES ('$UserID',100)");
+				echo "本网站开业大酬宾！新注册用户均可免费赠送100元供购物！"."<br/>";
 				echo $UserID.",您已注册成功，马上跳转至登录页面啦~";
 				header("Refresh:3;url = index.php");
 			}
