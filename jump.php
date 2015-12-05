@@ -18,7 +18,7 @@
 	if ($row = mysql_fetch_array($result)){
 		$_SESSION[AdminName] = $row[AdminName];
 		$_SESSION[AdminPass] = $row[AdminPass];
-		echo "登录成功，您好，".$row[AdminName]."3秒后跳转至管理页面";
+		echo "登录成功，您好，".$row[AdminName]." ,3秒后跳转至管理页面";
 		header("Refresh:3;url = manage.php");
 	}
 	else{

@@ -1,25 +1,87 @@
 <html>
+<style type="text/css">
+#apDiv1 {
+	position: absolute;
+	width: 343px;
+	height: 348px;
+	z-index: 1;
+	left: 223px;
+	top: 225px;
+	border: solid #696;
+}
+
+#apDiv2 {
+	position: absolute;
+	width: 336px;
+	height: 354px;
+	z-index: 2;
+	left: 20px;
+	top: 4px;
+	font-family: "Microsoft YaHei UI";
+	font-size: medium;
+}
+.btn{
+	background:#096;
+	font-weight:normal;
+	border:none;
+	width: 100px;
+	height: 40px;
+	font-size:large;
+	color: #FFF;
+}
+.textarea{
+	border:thin solid #696;
+	height: 30px;
+	width: 220px;
+}
+body {
+	background-image:url(IMG/pic1.jpg);
+	background-size:100%;
+	background-repeat:no-repeat;
+}
+</style>
+<script type="text/javascript">
+function MM_setTextOfTextfield(objId,x,newText) { //v9.0
+  with (document){ if (getElementById){
+    var obj = getElementById(objId);} if (obj) obj.value = newText;
+  }
+}
+</script>
+
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+   <script src="scripts/jquery.min.js"></script>
+   <script src="scripts/stickUp.min.js"></script>
+   <link href="bootstrap/css/buttons.css" rel="stylesheet">
+   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href="bootstrap/css/site.css" rel="stylesheet">
+   <script src="bootstrap/js/bootstrap.min.js"></script>
+  <div class="page-header">
+  <h1>&nbsp;&nbsp;旦 淘 网 <small>Follow your heart
+  <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+  </small></h1>
+</div>
+</head>
+
 <body>
-<body bgcolor = "green">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<h1>新用户注册<h1/>
 
 <form action = "?action=ask" method = "post">
-	<p1>输入用户名<p1/> <input name = "UserID" type = "text">
+	<ul>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><p1>输入 I D&nbsp;<p1/> <input name = "UserID" type = "text"></li>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><p2>输入密码<p2/> <input name = "Passwords" type = "password"></li>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><p3>确认密码<p3/> <input name = "RePasswords" type = "password"></li>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><p4>输入性别<p4/> <input name = "SEX" type = "text"></li>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<li><p5>输入年龄<p5/> <input name = "AGE" type = "text"></li>
+		</ul>
 		<br/>
-	<p2>输入密码<p2/> <input name = "Passwords" type = "password">
-		<br/>
-	<p3>确认密码<p3/> <input name = "RePasswords" type = "password">
-		<br/>
-	<p4>输入性别<p4/> <input name = "SEX" type = "text">
-		<br/>
-	<p5>输入年龄<p5/> <input name = "AGE" type = "text">
-		<br/>
-	<input type = "submit" value = "提交信息">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="btn btn-primary" type = "submit" value = "提交信息">
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="index.php" class="btn btn-danger" role="button">返回上层</a><br/>	
 	<br/>
 <br/>	
 </form>
 
+&nbsp;&nbsp;&nbsp;&nbsp;<textarea cols = "50" rows = "3" name = "HAHA">
 <?php
 	session_start();
 	error_reporting(0);
@@ -58,13 +120,13 @@
 		}
 	}
 	else{
-		echo "关键信息输入不能为空！";
-
+		echo "关键信息输入不能为空！"."\n";
+		echo "确认所有项目均已正确填写！";
 	}
 	mysql_close($con);
 ?>
-<br/>
-<a href="index.php">返回</a><br/>		
+</textarea>
+<br/>	
 		
 <body/>
 <html/>		

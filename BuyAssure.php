@@ -20,7 +20,7 @@
 	if($row = mysql_fetch_array($result)){
 		$search1 = mysql_query("SELECT * FROM Product WHERE ProductID = '$ProductID'");
 		$search2 = mysql_query("SELECT * FROM Account WHERE UserID = '$_SESSION[UserID]'");
-		$YourMoney = mysql_query($search2);
+		$YourMoney = mysql_fetch_array($search2);
 		$DataOut = mysql_fetch_array($search1);
 		$SellerID = $row[OwnerID];
 		if($SellerID == $_SESSION[UserID]){
@@ -40,9 +40,10 @@
 			echo "商品价格：".$DataOut['Price']."<br/>";
 			echo "<br/>";
 			echo "商品已归于您名下！"."<br/>";
-			mysql_query("UPDATE Account SET Money = Money - $DataOut[Price] WHERE UserID = '$_SESSION[UserID]'");
-			mysql_query("UPDATE Account SET Money = Money + $DataOut[Price] WHERE UserID = '$SellerID'");
+			mysql_query("UPDATE Account SET Money = Money - '$DataOut[Price]' WHERE UserID = '$_SESSION[UserID]'");
+			mysql_query("UPDATE Account SET Money = Money + '$DataOut[Price]' WHERE UserID = '$SellerID'");
 			mysql_query("UPDATE Product SET OwnerID = '$_SESSION[UserID]' WHERE ProductID = '$ProductID'");
+			mysql_query("DELETE FROM ShouCang WHERE UserID = '$_SESSION[UserID]' AND ProductID = '$ProductID'");
 		}
 	}
 	else{
