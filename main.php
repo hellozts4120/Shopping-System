@@ -112,8 +112,7 @@ function getindex(){
             <li><a href="buy.php">购买商品</a></li>
         </ul>
         <ul class="nav nav-sidebar">
-            <li><a href="postout.php">发布出售</a></li>
-            <li><a href="deletestuff.php">删除商品</a></li>
+            <li><a href="postout.php">商品增删</a></li>
             <li><a href="account.php">管理账户</a></li>
             <li><a href="logout.php">退出账号</a></li>
         </ul>

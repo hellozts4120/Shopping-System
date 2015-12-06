@@ -9,7 +9,7 @@
 #apDiv1 {
   position: absolute;
   width: 1684px;
-  height: 115px;
+  height: 109px;
   z-index: 2;
   left: 0px;
   top: 0px;
@@ -32,8 +32,9 @@
   <div id="apDiv1">
   <h1>&nbsp;&nbsp;旦 淘 网 <small>快速导航
   <span class="glyphicon glyphicon-heart" style="color:red;" aria-hidden="true"></span>
-  </small></h1>
-</div>
+  </small> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<small></h1>
+  <h4>&nbsp;&nbsp;&nbsp;&nbsp;淘在复旦，淘你所爱</h4>
+  </div>
 </head>
 <body>
 
@@ -120,6 +121,41 @@
       <div class="modal-footer">
         <button type="button" class="button button-rounded button-small" data-dismiss="modal">确认</button>
       </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--模态框3用于发布商品-->
+<div class="modal fade" id="change" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">输入所需信息：</h4>
+      </div>
+      <div class="modal-body">
+
+        <form name = "Post" action = "jump3.php" method = "post">
+           <div class="input-group">
+           <span class="input-group-addon">商品编号</span>
+             <input type="text" name="ProductID" class="form-control" placeholder = "输入商品编号">
+           </div>
+         <br/>
+            <div class="input-group">
+            <span class="input-group-addon">￥</span>
+             <input type="text" name="NewPrice" class="form-control" placeholder = "输入新的价格">
+             <span class="input-group-addon">元</span>
+           </div>
+         <br/>  
+
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="button button-rounded button-small" data-dismiss="modal">取消</button>
+        <button type="submit" class="button button-primary button-rounded button-small">确认发布</button>
+      </div>
+      </form>
     </div>
   </div>
 </div>
@@ -322,6 +358,9 @@
 	}
 	mysql_close($con);
 ?>
+</tbody>
+</table>
+</div>
 
 </body>
 </html>
