@@ -58,6 +58,18 @@
 
 <form align = "center">
 
+<div class="table-responsive">
+  <table class="table table-striped">
+  <thead>
+  <tr>
+    <th>商品编号</th>
+    <th>商品名称</th>
+    <th>商品价格</th>
+    <th>所有人</th>
+    </tr>
+  </thead>
+  <tbody>
+
 <?php
 	if($_GET['action'] == 'ask'){
 		$ProductID = $_POST[ProductID];
@@ -85,10 +97,12 @@
 			else{
 				echo '<B>'.'<u>'.'<p style="font-size:15pt;color:red;text-align:center";>'."指定编号商品信息为：".'<p>'.'</u>'.'</B>';
 				echo "<br />";
-				echo "商品编号：".$DataOut['ProductID']." ";
-				echo "商品名称：".$DataOut['ProductName']." ";
-				echo "商品价格：".$DataOut['Price']." ";
-				echo "所有人：".$DataOut['OwnerID']."<br/>";
+				echo "<tr>";
+				echo "<td class='success'>".$DataOut['ProductID']."</td>";
+				echo "<td class='success'>".$DataOut['ProductName']."</td>";
+				echo "<td class='success'>".$DataOut['Price']."</td>";
+				echo "<td class='success'>".$DataOut['OwnerID']."</td>";
+				echo "</tr>";
 			}
 		}
 	}
@@ -105,10 +119,12 @@
 			while($DataOut = mysql_fetch_array($request)){
 				$quest = mysql_query("SELECT * FROM Product WHERE ProductID = '$DataOut[ProductID]'");
 				$DataOutReal = mysql_fetch_array($quest);
-				echo "商品编号：".$DataOutReal['ProductID']." ";
-				echo "商品名称：".$DataOutReal['ProductName']." ";
-				echo "商品价格：".$DataOutReal['Price']." ";
-				echo "<br />";
+				echo "<tr>";
+				echo "<td class='success'>".$DataOutReal['ProductID']."</td>";
+				echo "<td class='success'>".$DataOutReal['ProductName']."</td>";
+				echo "<td class='success'>".$DataOutReal['Price']."</td>";
+				echo "<td class='success'>".$DataOutReal['OwnerID']."</td>";
+				echo "</tr>";
 				$isout = true;
 			}
 			if(!$isout){
@@ -125,11 +141,12 @@
 		else{
 			echo '<B>'.'<u>'.'<p style="font-size:15pt;color:red;text-align:center";>'."模糊搜索所得结果为：".'<p>'.'</u>'.'</B>';
 			while($DataOutReal = mysql_fetch_array($request4)){
-				echo "商品编号：".$DataOutReal['ProductID']." ";
-				echo "商品名称：".$DataOutReal['ProductName']." ";
-				echo "商品价格：".$DataOutReal['Price']." ";
-				echo "所有人：".$DataOutReal['OwnerID'];
-				echo "<br />";
+				echo "<tr>";
+				echo "<td class='success'>".$DataOutReal['ProductID']."</td>";
+				echo "<td class='success'>".$DataOutReal['ProductName']."</td>";
+				echo "<td class='success'>".$DataOutReal['Price']."</td>";
+				echo "<td class='success'>".$DataOutReal['OwnerID']."</td>";
+				echo "</tr>";
 			}
 		}
 	}
@@ -147,10 +164,12 @@
 			}
 			else{
 				echo '<B>'.'<u>'.'<p style="font-size:15pt;color:red;text-align:center";>'."指定编号商品信息为：".'<p>'.'</u>'.'</B>';
-				echo "商品编号：".$DataOut['ProductID']." ";
-				echo "商品名称：".$DataOut['ProductName']." ";
-				echo "商品价格：".$DataOut['Price']." ";
-				echo "所有人：".$DataOut['OwnerID'];
+				echo "<tr>";
+				echo "<td class='success'>".$DataOut['ProductID']."</td>";
+				echo "<td class='success'>".$DataOut['ProductName']."</td>";
+				echo "<td class='success'>".$DataOut['Price']."</td>";
+				echo "<td class='success'>".$DataOut['OwnerID']."</td>";
+				echo "</tr>";
 			}
 		}
 	}
@@ -167,10 +186,12 @@
 			while($DataOut = mysql_fetch_array($request)){
 				$quest = mysql_query("SELECT * FROM Product WHERE ProductID = '$DataOut[ProductID]'");
 				$DataOutReal = mysql_fetch_array($quest);
-				echo "商品编号：".$DataOutReal['ProductID']." ";
-				echo "商品名称：".$DataOutReal['ProductName']." ";
-				echo "商品价格：".$DataOutReal['Price']." ";
-				echo "<br />";
+				echo "<tr>";
+				echo "<td class='success'>".$DataOutReal['ProductID']."</td>";
+				echo "<td class='success'>".$DataOutReal['ProductName']."</td>";
+				echo "<td class='success'>".$DataOutReal['Price']."</td>";
+				echo "<td class='success'>".$DataOutReal['OwnerID']."</td>";
+				echo "</tr>";
 				$isout = true;
 			}
 			if(!$isout){
@@ -186,11 +207,12 @@
 		else{
 			echo '<B>'.'<u>'.'<p style="font-size:15pt;color:red;text-align:center";>'."模糊搜索所得结果为：".'<p>'.'</u>'.'</B>';
 			while($DataOutReal = mysql_fetch_array($request4)){
-				echo "商品编号：".$DataOutReal['ProductID']." ";
-				echo "商品名称：".$DataOutReal['ProductName']." ";
-				echo "商品价格：".$DataOutReal['Price']." ";
-				echo "所有人：".$DataOutReal['OwnerID'];
-				echo "<br />";
+				echo "<tr>";
+				echo "<td class='success'>".$DataOutReal['ProductID']."</td>";
+				echo "<td class='success'>".$DataOutReal['ProductName']."</td>";
+				echo "<td class='success'>".$DataOutReal['Price']."</td>";
+				echo "<td class='success'>".$DataOutReal['OwnerID']."</td>";
+				echo "</tr>";
 			}
 		}
 	}
@@ -203,11 +225,15 @@
 	mysql_close($con);
 ?>
 
+</tbody>
+</table>
+</div>
+
 </form>
 
 	<br/>
 <br/>
-<a href = "buy.php">去购买</a><br/>
-<a href = "main.php">返回主界面</a><br/>
+<a class="navbar-brand" href = "buy.php">去购买</a>
+<a class="navbar-brand" href = "main.php">返回主界面</a><br/>
 </body>
 </html>
