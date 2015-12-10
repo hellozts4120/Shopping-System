@@ -109,7 +109,7 @@ function MM_setTextOfTextfield(objId,x,newText) { //v9.0
 			else{
 				$request1 = mysql_query("INSERT INTO Users(UserID,Passwords,SEX,AGE) VALUES ('$UserID','$Passwords','$SEX','$AGE')");
 				$request2 = mysql_query("INSERT INTO Account(UserID,Money) VALUES ('$UserID',100)");
-				echo "本网站开业大酬宾！新注册用户均可免费赠送100元供购物！"."<br/>";
+				echo "本网站开业大酬宾！新注册用户均可免费赠送100元供购物！"."\n";
 				echo $UserID.",您已注册成功，马上跳转至登录页面啦~";
 				header("Refresh:3;url = index.php");
 			}

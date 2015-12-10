@@ -67,8 +67,9 @@
 	}
 	mysql_select_db("portal",$con);
 	$request = mysql_query("SELECT * FROM Product WHERE OwnerID = '$_SESSION[UserID]'");
+	$request1 = mysql_query("SELECT * FROM Product WHERE OwnerID = '$_SESSION[UserID]'");
 	if($request){
-		if(!(mysql_fetch_array($request))){
+		if(!(mysql_fetch_array($request1))){
 			echo '<h2 class="sub-header">'."&nbsp;&nbsp;&nbsp;".'<span style="color:red;background-color: #000000">'.'您还未发布商品，不用删除，只用发布就可以啦！'.'</span>'.'</h2>';
 		}
 		else{

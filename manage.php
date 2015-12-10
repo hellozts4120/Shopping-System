@@ -146,14 +146,16 @@
 	else if(!empty($_POST[UserID]) && empty($_POST[ProductID])){
 		$request = mysql_query("SELECT * FROM Users WHERE UserID = '$UserID'");
 		if(!$request){
-			echo "抱歉，未查询到指定卖家！";
+			echo "抱歉，未查询到指定用户！";
 		}
 		else{
 			$DataOut = mysql_fetch_array($request);
-			if(!DataOut){
-				echo "抱歉，未查询到指定卖家！";
+			if(!$DataOut){
+				echo "抱歉，未查询到指定用户！";
 			}
 			else{
+				mysql_query("DELETE FROM GuanZhu WHERE YourName = '$DataOut[UserID]' OR GuanZhuName = '$DataOut[UserID]'");
+				mysql_query("DELETE FROM ShouCang WHERE UserID = '$DataOut[UserID]'");
 				mysql_query("DELETE FROM Product WHERE OwnerID = '$DataOut[UserID]'");
 				mysql_query("DELETE FROM Account WHERE UserID = '$DataOut[UserID]'");
 				mysql_query("DELETE FROM Users WHERE UserID = '$DataOut[UserID]'");

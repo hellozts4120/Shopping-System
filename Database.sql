@@ -43,8 +43,7 @@ create table GuanZhu(
 create table ShouCang(
 	UserID varchar(11),
     ProductID varchar(100),
-    foreign key(UserID)references Users(UserID),
-    foreign key(ProductID)references Product(ProductID)
+    foreign key(UserID)references Users(UserID)
 );
 
 insert into  Users VALUES
